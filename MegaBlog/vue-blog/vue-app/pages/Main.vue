@@ -10,8 +10,18 @@
 <script>
 import { mapState } from "vuex";
 export default {
-    created() {
-        this.$store.dispatch("loadBlogs");
+    mounted() {
+        if(this.blogs.length < 1){
+            this.$store.dispatch("loadBlogs");
+        }
+    },
+    meta: {
+        title: "Mega Blog",
+        description: "This is an awesome super Mega Blog",
+        keywords: "vue, blog, mega, ssr"
+    },
+    loadAsync({store, origin}) {
+      return store.dispatch('loadBlogs', origin);
     },
     computed: mapState(["blogs"])
 };
