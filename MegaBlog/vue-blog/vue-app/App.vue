@@ -10,18 +10,6 @@
 <script>
 import Axios from 'axios';
     export default {
-        data(){
-            return{
-            };
-        },
-        created(){
-          
-        },
-        methods: {
-            loadBlog(id) {
-              
-            }
-        }
     };
 </script>
 
