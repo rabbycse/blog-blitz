@@ -14,8 +14,20 @@
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
-    created() {
-        this.loadBlog(this.$route.params.id);
+    mounted() {
+        if(!this.selectedBlog){
+            this.loadBlog({ id: this.$route.params.id });
+        }
+    },
+    meta(state) {
+        return {
+        title: state.selectedBlog.title,
+        description: state.selectedBlog.title,
+        keywords: state.selectedBlog.title
+       };
+    },
+    loadAsync({ store, origin, params }) {
+        return store.dispatch("loadBlog", { origin, id: params.id });
     },
     methods: mapActions(["loadBlog"]),
     beforeRouteLeave(to, from, next) {
